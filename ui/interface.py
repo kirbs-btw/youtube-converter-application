@@ -1,13 +1,13 @@
 import tkinter as tk
 from tkinter import ttk
-# import converte / trying to find the syntax to import prev folder
+import converter.converter as conv
 
 def do_conversion(link, path):
-    # converter(link ,path)
-    pass
+    conv.converter(link, path)
 
 def start_app():
     root = tk.Tk()
+    root.title("youtube converter")
 
     root.geometry('500x500')
 
