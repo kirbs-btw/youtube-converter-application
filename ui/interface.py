@@ -16,13 +16,22 @@ def start_app():
 
     # title
 
+    title_lable = tk.Label(canvas, text="Converter")
+    title_lable.pack(side = tk.TOP)
+
     # input for link
+
+    link_lable = tk.Label(canvas, text="Insert Link here")
+    link_lable.pack(side = tk.TOP)
 
     link_input = ttk.Entry(canvas)
     link_input.pack(side = tk.TOP ,ipadx = 30, ipady = 6)
 
     # input for the output folder 
     # will be saved for the next time
+
+    folderpath_lable = tk.Label(canvas, text="insert path here")
+    folderpath_lable.pack(side = tk.TOP)
 
     folder_input = ttk.Entry(canvas)
     folder_input.pack(side = tk.TOP, ipadx = 30, ipady = 6)
