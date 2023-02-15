@@ -9,20 +9,15 @@ def start_app():
     root = tk.Tk()
     root.title("youtube converter")
 
-    root.geometry('500x500')
+    root.geometry('250x300')
 
-    canvas = tk.Canvas(root, width=500, height=500)
-    canvas.pack()
-
-    # title
-
-    title_lable = tk.Label(canvas, text="Converter")
-    title_lable.pack(side = tk.TOP)
+    canvas = tk.Canvas(root, highlightthickness=0)
+    canvas.pack(side = tk.TOP, fill='both')
 
     # input for link
 
     link_lable = tk.Label(canvas, text="Insert Link here")
-    link_lable.pack(side = tk.TOP)
+    link_lable.pack(side = tk.TOP, pady = [50, 3])
 
     link_input = ttk.Entry(canvas)
     link_input.pack(side = tk.TOP ,ipadx = 30, ipady = 6)
@@ -37,6 +32,19 @@ def start_app():
     folder_input.pack(side = tk.TOP, ipadx = 30, ipady = 6)
 
     # format choosing drop down
+
+    dropdown_menu_options = [
+        None,
+        ".mp3",
+        ".wav",
+        # add more endings
+    ]
+
+    variable = tk.StringVar(root)
+    variable.set(dropdown_menu_options[1]) # default value
+
+    file_ending_dropdown = ttk.OptionMenu(canvas, variable, *dropdown_menu_options)
+    file_ending_dropdown.pack(side = tk.TOP, ipadx = 30, ipady = 6)
 
     # convert button 
     
