@@ -5,7 +5,7 @@ def main():
     output = sub(output, "\\", "/")
     link = input("give link: ")
     
-    converter(link, output)
+    converter(link, output, ".wav")
 
 
 # my re.sub does not work 
@@ -22,11 +22,11 @@ def sub(text, pattern, replace) -> str:
     return newText
 
 
-def downloadVideo(videoInfo ,path):
+def downloadVideo(videoInfo ,path, format):
     nameSave = ""
 
     try:
-        filename = f"{path}/{videoInfo['title']}.wav"
+        filename = f"{path}/{videoInfo['title']}{format}"
         nameSave = filename
         options={
             'format':'bestaudio/best',
@@ -41,7 +41,7 @@ def downloadVideo(videoInfo ,path):
         print("Error occured with the video {}".format(nameSave))
 
 
-def converter(link, path):
+def converter(link, path, format):
     video_url = link
     video_info = youtube_dl.YoutubeDL().extract_info(
         url = video_url,download=False
@@ -50,11 +50,11 @@ def converter(link, path):
     try: 
         # trying it for a playlist
         for singleVideoInfo in video_info['entries']:
-            downloadVideo(singleVideoInfo, path)
+            downloadVideo(singleVideoInfo, path, format)
     except KeyError:
         # if the KeyError is raised it will be a  KeyError: 'entries'
         # it is a single video
-        downloadVideo(video_info, path)
+        downloadVideo(video_info, path, format)
     print("download complete")
 
 if __name__=='__main__':
