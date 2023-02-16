@@ -2,8 +2,8 @@ import tkinter as tk
 from tkinter import ttk
 import converter.converter as conv
 
-def do_conversion(link, path):
-    conv.converter(link, path)
+def do_conversion(link, path, format):
+    conv.converter(link, path, format)
 
 def start_app():
     root = tk.Tk()
@@ -48,7 +48,7 @@ def start_app():
 
     # convert button 
     
-    convert_button = ttk.Button(canvas, text="convert", command=lambda: do_conversion(link_input.get(), folder_input.get()))
+    convert_button = ttk.Button(canvas, text="convert", command=lambda: do_conversion(link_input.get(), folder_input.get(), variable.get()))
     convert_button.pack(side = tk.TOP, ipadx = 30, ipady = 6)
 
     # progress bar / no idea how this is gonna work but thats why we are here
