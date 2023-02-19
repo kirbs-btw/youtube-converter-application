@@ -1,6 +1,18 @@
 import tkinter as tk
 from tkinter import ttk
 import converter.converter as conv
+import sqlite3 as sql
+
+def getConnection():
+    conn = sql.connect("../sql/db.sql")
+    return conn, conn.cursor()
+
+def saveData():
+    conn, cur = getConnection()
+    
+    
+def loadData():
+    conn, cur = getConnection()
 
 def do_conversion(link, path, format):
     conv.converter(link, path, format)
