@@ -7,14 +7,36 @@ def getConnection():
     conn = sql.connect("../sql/db.sql")
     return conn, conn.cursor()
 
-def saveData():
+def saveData(format, save_path):
     conn, cur = getConnection()
     
+    command = "DELETE FROM user_data"
+    cur.execute(command)
+    conn.commit()
+
+    command = f"INSERT INTO user_data VALUES('{save_path}', '{format}')"
+    cur.execute(command)
+    conn.commit()
+
+def getData():
+    _, cur = getConnection()
+    command = "SELECT * FROM user_data"
+    data = cur.execute(command).fetchall()
+    if data != []:
+        path = data[0][0]
+        format = data[0][1]
+        return path, format
+    return "", ".mp3"
     
-def loadData():
-    conn, cur = getConnection()
+
+def loadData(folder_input, variable_dropdown):
+    path, format = getData()
+    variable_dropdown.set(format)
+    folder_input.insert(0, path)
+
 
 def do_conversion(link, path, format):
+    saveData(format, path)
     conv.converter(link, path, format)
 
 def start_app():
@@ -66,5 +88,7 @@ def start_app():
     # progress bar / no idea how this is gonna work but thats why we are here
 
     # footer with social links or something legal 
+
+    loadData(folder_input, variable)
 
     root.mainloop()
