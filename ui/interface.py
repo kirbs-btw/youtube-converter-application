@@ -42,8 +42,9 @@ def do_conversion(link, path, format):
 def start_app():
     root = tk.Tk()
     root.title("youtube converter")
+    root.iconbitmap("../gui/download.ico")
 
-    root.geometry('250x300')
+    root.geometry('275x300')
 
     canvas = tk.Canvas(root, highlightthickness=0)
     canvas.pack(side = tk.TOP, fill='both')
