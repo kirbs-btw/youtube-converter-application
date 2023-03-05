@@ -35,7 +35,9 @@ def loadData(folder_input, variable_dropdown):
     folder_input.insert(0, path)
 
 
-def do_conversion(link, path, format):
+def do_conversion(link, path, format, canvas):
+    user_feedback_label = tk.Label(canvas, text=f"converting: {link} \nplease have patience\nsaves in: {path}", bg="#99f54e")
+    user_feedback_label.pack(side = tk.BOTTOM, fill='x')
     saveData(format, path)
     conv.converter(link, path, format)
 
@@ -47,7 +49,7 @@ def start_app():
     root.geometry('275x300')
 
     canvas = tk.Canvas(root, highlightthickness=0)
-    canvas.pack(side = tk.TOP, fill='both')
+    canvas.pack(side = tk.TOP, fill=tk.BOTH, expand=True)
 
     # input for link
 
@@ -83,7 +85,7 @@ def start_app():
 
     # convert button 
     
-    convert_button = ttk.Button(canvas, text="convert", command=lambda: do_conversion(link_input.get(), folder_input.get(), variable.get()))
+    convert_button = ttk.Button(canvas, text="convert", command=lambda: do_conversion(link_input.get(), folder_input.get(), variable.get(), canvas))
     convert_button.pack(side = tk.TOP, ipadx = 30, ipady = 6)
 
     # progress bar / no idea how this is gonna work but thats why we are here
